@@ -4,7 +4,7 @@
 			<a href="{{ mention.author.url }}" class="[ author-wrapper ]">
 				<sl-avatar
 					class="[ author-photo-image ]"
-					image="{{ mention.author.photo | imageLink }}"
+					image="{{ mention.author.photo | eleventyImageServiceAvatar }}"
 					initials="{{ mention.author.name[0] }}"
 					label=""
 				></sl-avatar>

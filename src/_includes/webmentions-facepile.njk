@@ -6,7 +6,7 @@
 		<a href="{{ facepileMention.author.url }}" class="[ face-link ]">
 			<sl-avatar
 				class="[ author-photo-image ]"
-				image="{{ facepileMention.author.photo | imageLink }}"
+				image="{{ facepileMention.author.photo | eleventyImageServiceAvatar }}"
 				initials="{{ mention.author.name[0] }}"
 				label="{{ facepileMention.author.name }}"
 			></sl-avatar>

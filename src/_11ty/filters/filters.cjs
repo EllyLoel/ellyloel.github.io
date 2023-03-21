@@ -9,6 +9,10 @@ module.exports = (eleventyConfig) => {
 		"dateToLocaleDateFull",
 		require("./dateToLocaleDateFull.cjs")
 	);
+	eleventyConfig.addFilter(
+		"eleventyImageServiceAvatar",
+		require("./eleventyImageServiceAvatar.cjs")
+	);
 	eleventyConfig.addFilter("excerpt", require("./excerpt.cjs"));
 	eleventyConfig.addFilter("filterTagList", require("./filterTagList.cjs"));
 	eleventyConfig.addFilter("getAllTags", require("./getAllTags.cjs"));
