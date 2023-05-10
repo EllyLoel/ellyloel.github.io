@@ -1,5 +1,3 @@
-const path = require("path");
-const pluginImage = require("@11ty/eleventy-img");
 const pluginUnfurl = require("eleventy-plugin-unfurl");
 
 /** @param {import('@11ty/eleventy').UserConfig} eleventyConfig */
@@ -7,31 +5,6 @@ module.exports = (eleventyConfig) => {
 	eleventyConfig.addPlugin(pluginUnfurl, {
 		duration: "4w",
 		template: async (props) => {
-			const imageAttributes = {
-				alt: "",
-				class: "[ image unfurl__image ]",
-				decoding: "async",
-				loading: "lazy",
-				sizes: "(max-width: 768px) 100vw, 768px",
-			};
-
-			const metadata = props?.image?.url
-				? await pluginImage(props?.image?.url, {
-						cacheOptions: {
-							duration: "4w",
-						},
-						formats: ["avif", "webp", "jpeg"],
-						outputDir: path.join("_site", "img"),
-						widths: [300, 600, 1000],
-				  })
-				: {};
-
-			const image = props?.image?.url
-				? pluginImage.generateHTML(metadata, imageAttributes, {
-						whitespaceMode: "inline",
-				  })
-				: "";
-
 			return props
 				? `<article class="unfurl">${
 						props?.author
@@ -49,7 +22,11 @@ module.exports = (eleventyConfig) => {
 						props?.description
 							? `<p class="unfurl__description">${props.description}</p>`
 							: ``
-				  }${image}</article>`
+				  }${
+						props?.image?.url
+							? `<img class="[ image unfurl__image u-photo ]" src="${props?.image?.url}" width="${props?.image?.width}" height="${props?.image?.height}" alt="">`
+							: ``
+				  }</article>`
 				: ``;
 		},
 	});
